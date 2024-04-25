@@ -1,0 +1,9 @@
+# Flask project specific
+*.pyc
+__pycache__/
+instance/
+.webassets-cache
+
+# Visual Studio Code specific
+.vscode/
+*.code-workspace

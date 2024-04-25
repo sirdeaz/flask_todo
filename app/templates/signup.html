@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <h5 class="card-title text-center mb-5">Sign In</h5>
+          <form method="POST" action="{{ url_for('auth.signup') }}" class="needs-validation" novalidate> 
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Peter" required>
+                <label for="first_name">First name</label>
+                <div class="invalid-feedback">
+                    Please enter a valid first name.
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Dunn" required>
+                <label for="last_name">Last name</label>
+                <div class="invalid-feedback">
+                    Please enter a valid last name.
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                <label for="email">Email address</label>
+                <div class="invalid-feedback">
+                    Please enter a valid email.
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+                <div class="invalid-feedback">
+                    Please enter a valid a password.
+                </div>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
