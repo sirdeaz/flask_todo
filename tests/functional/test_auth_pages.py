@@ -12,7 +12,7 @@ def test_login_get(client):
 def test_login_post_succeed(client, user):
     response = client.post('/auth/login', data={'email': user.email, 'password': 'password'}, follow_redirects=True)
     assert response.status_code == 200
-    assert response.request.path == '/profile'
+    assert response.request.path == '/todos/'
 
 def test_login_post_fail(client, user):
     response = client.post('/auth/login', data={'email': user.email, 'password': 'wrongpassword'}, follow_redirects=True)
@@ -79,9 +79,8 @@ def test_logout_get_fails(client):
     assert response.status_code == 200
     assert response.request.path == '/auth/login'
 
-def test_logout_get_succeeds(app, client, user):
-    with app.app_context():
-        response = client.post('/auth/login', data={'email': user.email, 'password': 'password'}, follow_redirects=True)
-        response = client.get('/auth/logout', follow_redirects=True)
-        assert response.status_code == 200
-        assert response.request.path == '/'
+def test_logout_get_succeeds(client, user):
+    response = client.post('/auth/login', data={'email': user.email, 'password': 'password'}, follow_redirects=True)
+    response = client.get('/auth/logout', follow_redirects=True)
+    assert response.status_code == 200
+    assert response.request.path == '/'

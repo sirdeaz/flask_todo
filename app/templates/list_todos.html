@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>My Todos</h1>
+    
+        {% if todos|length == 0 %}
+            <h2 class="text-center">You have no todos</h2>
+        {% endif %}
+        {% for todo in todos %}
+            <div class="card border-primary mb-3">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">{{todo.title}} </div>
+                        <div class="col text-end">
+                            <a class="bi bi-trash-fill" style="color:red" href="{{ url_for('todos.delete', todo_id=todo.id) }}"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                <p class="card-text">{{todo.description}}</span></p>
+                </div>
+            </div>
+        {% endfor %}
+    
+{% endblock %}

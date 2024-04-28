@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Welcome to Flask Skeleton App{% endblock %}
-
 {% block content %}
-    
+    <div class="jumbotron">
+        <h1 class="display-3">Flask Todo!</h1>
+        <p class="lead">Todo example build with flask</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="{{ url_for('auth.signup')}}" role="button">Get started</a>
+        </p>
+    </div>
 {% endblock %}

@@ -39,4 +39,14 @@ def user(app):
         db.session.add(user)
         db.session.commit()
         db.session.refresh(user)
+        
         return user
+    
+@pytest.fixture
+def auth(client):
+    class AuthHelper:
+        def login(self, email, password):
+            return client.post('/auth/login', data={'email': email, 'password': password}, follow_redirects=True)
+        def logout(self):
+            return client.get('/auth/logout', follow_redirects=True)
+    return AuthHelper()

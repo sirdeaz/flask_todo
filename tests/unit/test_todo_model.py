@@ -4,6 +4,7 @@ from app.models.user import User
 
 def test_todo_model(app, user):
     with app.app_context():
+        
         todo1 = Todo(title='Test Todo1', description='Test Description1', user=user)
         todo2 = Todo(title='Test Todo2', description='Test Description2', user=user)
 

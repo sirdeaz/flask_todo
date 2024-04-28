@@ -22,13 +22,16 @@ def create_app(config_class = Config):
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
+    from app.todo import bp as todo_bp
+    app.register_blueprint(todo_bp, url_prefix='/todos')
+
     # Load Models
     from app.models.user import User
     from app.models.todo import Todo
 
     @login_manager.user_loader
     def load_user(user_id):
-        return db.session().query(User).get(int(user_id))
+        return db.session.query(User).get(int(user_id))
 
     return app
  

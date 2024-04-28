@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
     first_name: Mapped[str] = mapped_column(String(50), nullable=False)
     email: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
     password: Mapped[str] = mapped_column(String(50), nullable=False)
-    todos: Mapped[List['Todo']] = relationship(back_populates='user')
+    todos: Mapped[List['Todo']] = relationship(back_populates='user') # type: ignore
 
     def __repr__(self) -> str:
         return f'<User {self.first_name} {self.last_name}>'
