@@ -8,23 +8,23 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card border-0 shadow rounded-3 my-5">
             <div class="card-body p-4 p-sm-5">
-                <form method="POST" action="{{ url_for('todos.create') }}" class="needs-validation" novalidate> 
+                <form method="POST" action="{{ url_for('todos.update', todo_id=todo.id) if todo else url_for('todos.create')}}" class="needs-validation" novalidate>    
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="title" id="title" placeholder="title" required>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="title" value="{{ todo.title if todo }}" required>
                         <label for="title">Title</label>
                         <div class="invalid-feedback">
                             Please enter a valid title
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea rows="5" style="height: 100%;" class="form-control" name="description" id="description" placeholder="description" required></textarea>
+                        <textarea rows="5" style="height: 100%;" class="form-control" name="description" id="description" placeholder="description" value="{{ todo.description if todo }}" required>{{ todo.description if todo }}</textarea>
                         <label for="description">Description</label>
                         <div class="invalid-feedback">
                             Please enter a valid description.
                         </div>
                     </div>
                     <div class="d-grid">
-                        <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Create</button>
+                        <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">{{ 'Update' if todo else 'Create'}}</button>
                     </div>
                 </form>
             </div>
