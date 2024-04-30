@@ -17,7 +17,7 @@ def list_todos():
 def create():
     return render_template('create_or_update_todo.html')
 
-@bp.route('/<int:todo_id>/update')
+@bp.route('/update/<int:todo_id>')
 @login_required
 def update(todo_id):
     todo = db.session.query(Todo).filter(Todo.id==todo_id).first()
@@ -30,7 +30,7 @@ def update(todo_id):
     return render_template('create_or_update_todo.html', todo=todo)
 
 @bp.route('/create', methods=['POST'])
-@bp.route('/<int:todo_id>/update', methods=['POST'])
+@bp.route('/update/<int:todo_id>/', methods=['POST'])
 @login_required
 def create_or_update(todo_id=None):
     title = request.form.get('title')
@@ -60,7 +60,7 @@ def create_or_update(todo_id=None):
     return redirect(url_for('todos.list_todos'))
 
 
-@bp.route('/<int:todo_id>/delete', methods=['POST'])
+@bp.route('/delete/<int:todo_id>/', methods=['POST'])
 @login_required
 def delete(todo_id):
     todo = db.session.query(Todo).filter(Todo.id==todo_id).first()

@@ -12,8 +12,11 @@
                     <div class="row">
                         <div class="col">{{todo.title}} </div>
                         <div class="col text-end">
-                            <a class="bi bi-pencil-square" style="color:blue" href="{{ url_for('todos.update', todo_id=todo.id) }}"></a>
-                            <a class="bi bi-trash-fill" style="color:red" href="{{ url_for('todos.delete', todo_id=todo.id) }}"></a>
+                            <form action="{{ url_for('todos.delete', todo_id=todo.id) }}" method="POST">
+                                <a class="bi bi-pencil-square" style="color:blue" href="{{ url_for('todos.update', todo_id=todo.id) }}"></a>
+                                <button class="btn btn-link bi bi-trash-fill" style="color:red" type="submit"></button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
